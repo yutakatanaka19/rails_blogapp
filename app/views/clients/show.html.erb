@@ -1,0 +1,49 @@
+<%= content_for :title, "mypage" %>
+
+<% content_for :head do %>
+    <%= stylesheet_link_tag "mypage"%>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<% end %>
+
+<% content_for :body do %>
+    <div style="margin-top: 50px; color: #fff;"><h1>マイページ</h1></div>
+    
+    <div><h2>あなたの記事一覧</h2></div>
+    <% if current_user.posts.present? %>
+        <div class="created_post">
+            <% current_user.posts.each do |post| %>
+                <div class="cp_container">
+                    <div class="img_container"><%= link_to image_tag(url_for(post.image)), post_path(post.id) %></div>
+                    <div class="title_container"><%= link_to post.title, post_path(post.id) %></div>
+                </div>
+            <% end %>
+        </div>
+    <% else %>
+        <div class="sign">
+            <div>まだあなたの記事はありません。ご投稿をお待ちしております。</div>
+        </div>
+    <% end %>
+    <div><h2>いいねした記事一覧</h2></div>
+    <% if current_user.liked_posts.present? %>
+        <div class="created_post">
+            <% current_user.liked_posts.each do |post| %>
+                <div class="cp_container">
+                    <div class="img_container"><%= link_to image_tag(url_for(post.image)), post_path(post.id) %></div>
+                    <div class="title_container"><%= link_to post.title, post_path(post.id) %></div>
+                </div>
+            <% end %>
+        </div>
+    <% else %>
+        <div class="sign">
+            <div>まだあなたのいいねした記事はありません。色んな作品を鑑賞しましょう。</div>
+        </div>
+    <% end %>
+    <%= form_with(url: destroy_user_session_path, method: :delete) do %>
+        <button type="submit" class="water">ログアウト</button>
+        <div style="margin-left: 50px;" class="water"><%= link_to '戻る', root_path %></div>
+    <% end %>
+    
+<% end %>

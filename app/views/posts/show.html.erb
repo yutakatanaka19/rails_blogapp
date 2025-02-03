@@ -1,0 +1,46 @@
+<% content_for :head do %>
+    <%= stylesheet_link_tag "article" %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<% end %>
+
+<% content_for :body do %>
+<h1><div><%= @post.title %></div></h1>
+
+<section>
+    <div class="container">
+        <img src="<%= url_for(@post.image) %>" alt="扉絵">
+        <div class="text">
+            <p><%= @post.text %></p>
+        </div>
+    </div>
+    <div  class="author">
+        <p>作成者: <%= @post.user.name %></p>
+        <p>投稿日: <%= @post.created_at.strftime('%Y-%m-%d %H:%M') %></p>
+    </div>
+    <div class="operation">
+        <% if user_signed_in? %>
+            <% if @post.user == current_user %>
+                <%= link_to "編集", edit_post_path(@post.id) %>
+                <%= form_with(url: post_path(@post.id), method: :delete) do %>
+                    <button type="submit">削除<br><span style="font-size: 9px;">(アラート作ってないんですぐ削除されます)</span></button>
+                <% end %>
+            <% end %>
+            <% if @post.liked_users.include?(current_user) %>
+                <%= form_with(url: post_like_path(@post.id), method: :delete) do %>
+                    <button type="submit">いいねを取り消す</button>
+                <% end %>
+            <% else %>
+                <%= form_with(url: post_like_path(@post.id), method: :post) do %>
+                    <button type="submit">いいねする</button>
+                <% end %>
+            <% end %>
+        <% end %>
+    <%= link_to '戻る', root_path %>
+    </div>
+</section>
+
+
+<% end %>

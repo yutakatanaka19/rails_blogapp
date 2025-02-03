@@ -1,0 +1,197 @@
+header {
+    position: relative;
+    aspect-ratio: 16/8;
+    background-size: cover;
+    background-position: center;
+}
+
+header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(0deg, #000, rgba(0, 0, 0, 0.35) 35%);
+}
+
+.logo_container_ex {
+    position: relative;
+    z-index: 2;
+    top: 32%;
+}
+
+.logo_container {
+    position: relative;
+    z-index: 2;
+    top: 42%;
+}
+
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.icon_film {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+    width: 200px;
+    background-color: #aaa;
+    border-radius: 100%;
+}
+
+.icon_film img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    overflow: hidden;
+    border-radius: 100%;
+}
+
+.icon_film a {
+    width: 100%;
+    height: 100%;
+}
+
+.logo {
+    text-align: center;
+    font-size: 70px;
+    color: #fff;
+    margin: 0;
+}
+
+.noto-serif-logo {
+    font-family: "Noto Serif", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+}
+
+main {
+    position: relative;
+    aspect-ratio: 16/9;
+    background: linear-gradient(#000, #391900 5%, #eee 30%, #eee 70%, #391900 95%, #000);
+}
+
+main::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.06);
+}
+
+section {
+    position: relative;
+    z-index: 2;
+}
+
+.noto-serif-jp-mc {
+    font-family: "Noto Serif JP", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.greeting {
+    text-align: center;
+    color: #fff;
+    font-size: 47px;
+}
+
+.art {
+    background: linear-gradient(to right, #B30000, #BC9C78);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.lib {
+    background: linear-gradient(to right, #BA9A76, #FFF0D2);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.lead {
+    text-align: center;
+    line-height: 1.5;
+    color: #fff;
+    font-size: 30px;
+}
+
+.lead a:any-link {
+    color: #fff;
+}
+
+.auth {
+    font-size: 40px;
+    margin-bottom: 25px;
+}
+
+.art_section {
+    font-family: "Noto Serif", "Noto Serif JP", serif;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.art_section a:any-link {
+    color: #000;
+    text-decoration: none;
+}
+
+.art_container {
+    display: flex;
+    align-items: flex-start;
+    width: 600px;
+    margin: 50px 0;
+}
+
+.picture_container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    max-width: 384px;
+}
+
+.picture {
+    max-width: 384px;
+    height: 216px;
+}
+
+.picture div {
+    width: 100%;
+    height: 100%;
+}
+
+.picture img {
+    height: 100%;
+    padding: 0;
+    border: #fff 5px inset;
+    box-sizing: border-box;
+}
+
+.title {
+    overflow-wrap: break-word;
+    word-break: break-all;
+    font-size: x-large;
+    margin-top: 40px;
+}
+
+.likes {
+    margin-top: 10px;
+}
+
+.text_container {
+    height: 216px;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    font-size: larger;
+    margin: 5px 30px 0 30px;
+}
+
+.water {
+    margin-bottom: 600px;
+}

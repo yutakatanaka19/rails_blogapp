@@ -1,0 +1,78 @@
+<%= content_for :title, "home" %>
+
+<% content_for :head do %>
+    <%= stylesheet_link_tag "home"%>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+    header {
+        background-image: url(<%= asset_path "image0.png" %>);
+    }
+    </style>
+<% end %>
+
+<% content_for :body do %>
+    <header>
+      <% if user_signed_in? %>
+        <div class="logo_container_ex">
+            <div class="icon">
+              <div class="icon_film">
+                <%= link_to image_tag(url_for(current_user.display_icon)), client_path(current_user.id) %>
+              </div>
+            </div>
+            <h1 class="logo noto-serif-logo">Hello!</h1>
+        </div>
+      <% else %>
+        <div class="logo_container">
+            <h1 class="logo noto-serif-logo">Pictura et Scripta</h1>
+        </div>     
+      <% end %>
+    </header>
+    <main>
+        <section class="greeting_section noto-serif-jp-mc">
+          <% if user_signed_in? %>
+            <div class="lead">
+              <div class="auth"><%= link_to "記事を書く", new_post_path %></div>
+              <div class="auth"><%= link_to "マイページへ", client_path(current_user.id) %></div>
+            </div>
+          <% else %>
+            <div class="greeting"><span class="art">芸術</span>にあふれる<span class="lib">書庫</span>へようこそ！</div>
+            <div class="lead">
+              <p>ここは美術館。そして図書館。<br>扉絵が絵画、ブログ記事はさながらその解説書...</p>
+              <p><%= link_to "さぁ、あなたの作品を寄贈してください！", new_user_registration_path %></p>
+            </div>
+          <% end %>
+        </section>
+        <section class="">
+          <% if user_signed_in? %>
+          <% else %>
+            <%= link_to 'Sign up', new_user_registration_path %> |
+            <%= link_to 'Log in', new_user_session_path %>
+          <% end %>
+        </section>
+        <section class="art_section">
+          <% @posts.each do |post| %>
+            <div class="art_container">
+              <div class="picture_container">
+                <div class="picture">
+                  <div><%= link_to image_tag(url_for(post.image)), post_path(post.id) %></div>
+                </div>
+                <div class="title">
+                  <%= link_to post.title, post_path(post.id) %>
+                </div>
+                <div class="likes">
+                  <i class="fa-solid fa-heart"></i>
+                  <%= post.liked_users.size %>
+                </div>
+              </div>
+              <div class="text_container">
+                <div><%= post.text.truncate(100)%></div>
+              </div>
+            </div>
+          <% end %>
+          <div class="water"></div>
+        </section>
+    </main>
+<% end %>

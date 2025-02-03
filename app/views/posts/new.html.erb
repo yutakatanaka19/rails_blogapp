@@ -1,0 +1,47 @@
+<% content_for :head do %>
+  <style>
+    textarea {
+      width: 500px;
+      height: 600px;
+    }
+  </style>
+<% end %>
+
+
+<% content_for :body do %>
+<%= form_with(model: @post, local: true) do |form| %>
+  <% if @post.errors.any? %>
+    <div class="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+        <% @post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :text %>
+    <%= form.text_area :text, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.file_field :image, required: true %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Create Post" %>
+  </div>
+<% end %>
+
+<div style="margin-top: 20px;"><%= link_to '戻る', root_path %></div>
+
+<% end %>
